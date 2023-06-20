@@ -3,10 +3,10 @@
 {
     // Properties
     public $currentText = 'Hello ';
-    function set_text($additionalText) {
-        $this->currentText = $this->currentText . $additionalText;
+    function add($text) {
+        $this->currentText = $this->currentText . $text;
       }
-    function get_text() {
+    function getValue() {
         return $this->currentText;
     }
 }
