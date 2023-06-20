@@ -7,7 +7,7 @@
         $this->currentText = $this->currentText . $text;
       }
     function getValue() {
-        return $this->currentText;
+        return $this->currentText . '</br>';
     }
 }
 ?>
