@@ -1,8 +1,11 @@
 <?php 
-function myAutoload($Pipeline) {
-    include 'classes/'.$Pipeline . '.php';
+function myAutoload() {
+    include 'classes/Pipeline.php';
+    include 'classes/TextInput.php';
 }
 spl_autoload_register('myAutoload');
+
+
 
 $fun = Pipeline::make_pipeline(
     function($x) {
@@ -16,5 +19,10 @@ $fun = Pipeline::make_pipeline(
     }
 );
 
-echo $fun(8);
+echo $fun(8) . '<br>';
+
+$textInput = new TextInput();
+$textInput->set_text('world!');
+echo $textInput->get_text(); // Display "Hello world!"
+
 ?>
