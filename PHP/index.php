@@ -37,4 +37,23 @@ $table->recordResult("Maks", 3);
 $table->recordResult("Monika", 5);
 echo $table->playerRank(1) . '</br>'; //Should return "Monika"
 
+function getSynonyms($word){
+    $synonyms = [
+        'small' => ['little','compact']
+    ];
+    if(array_key_exists($word,$synonyms)){
+        $result = [
+            'word' => $word,
+            'synonyms' => $synonyms[$word]
+        ];
+    }else{
+        $result = [
+            'word' => $word,
+            'synonyms' => []
+        ];
+    }
+    return json_encode($result);
+}
+
+echo getSynonyms('small');
 ?>
