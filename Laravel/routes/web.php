@@ -16,5 +16,3 @@ use App\Http\Controllers\CustomerController;
 
 
 Route::get('/{customerId}', [CustomerController::class, 'index'])->name('home');
-
-
