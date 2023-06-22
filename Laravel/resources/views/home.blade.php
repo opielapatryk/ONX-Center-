@@ -1,4 +1,3 @@
-<!-- home.blade.php -->
 <h1>Informacje o kliencie</h1>
 
 <p>Klient: {{ $customer->name }}</p>
