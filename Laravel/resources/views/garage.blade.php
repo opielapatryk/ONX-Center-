@@ -1,4 +1,4 @@
-<h1>Informacje o uzytkowniku</h1>
+<h1>Informacje o użytkowniku</h1>
 
 <p>Nazwa: {{ $user->name }}</p>
 
@@ -10,25 +10,37 @@
     @csrf
 
     <ul style="list-style-type: none">
-        @foreach ($user->cars as $car)
-            <li>
-                <input type="radio" name="active_car" value="{{ $car->id }}" {{ $car->is_active ? 'checked' : '' }}>
-                Marka samochodu: {{ $car->brand }}
-                <br>
-                Model samochodu: {{ $car->model }}
-                <br>
-            </li>
-        @endforeach
+        @php
+        $activeCarId = session('activeCarId');
+        @endphp
+@foreach ($user->cars as $car)
+    <li>
+        <input type="radio" name="active_car" value="{{ $car->id }}" {{ $car->id == $activeCarId ? 'checked' : '' }}>
+        Marka samochodu: {{ $car->brand }}
+        <br>
+        Model samochodu: {{ $car->model }}
+        <br>
+    </li>
+@endforeach
+
+
+
+        <li>
+            <input type="radio" name="active_car" value="" {{ !$activeCarId ? 'checked' : '' }}>
+
+
+            Brak przypisanego samochodu
+            <br>
+        </li>
     </ul>
 
     <button type="submit">Zapisz</button>
 </form>
 
-
-<h2>Wybierz innego uzytkownika:</h2>
+<h2>Wybierz innego użytkownika:</h2>
 
 <ul style="list-style-type: none">
-    @foreach ($users as $user)
-        <li><a href="{{ route('garage', $user->id) }}">{{ $user->name }}</a></li>
+    @foreach ($users as $otherUser)
+        <li><a href="{{ route('garage', $otherUser->id) }}">{{ $otherUser->name }}</a></li>
     @endforeach
 </ul>

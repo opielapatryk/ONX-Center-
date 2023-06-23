@@ -9,22 +9,32 @@ use App\Models\User;
 class CarController extends Controller
 {
     public function setActiveCar(Request $request, $userId)
-{
-    $user = User::findOrFail($userId);
-
-    $carId = $request->input('active_car');
-
-    if ($carId) {
-        $user->cars()->update(['is_active' => false]); // Deactivate all cars for the user
-        $activeCar = $user->cars()->find($carId);
-        if ($activeCar) {
-            $activeCar->is_active = true;
-            $activeCar->save();
+    {
+        $user = User::findOrFail($userId);
+    
+        $carId = $request->input('active_car');
+        $activeCarId = $user->activeCar ? $user->activeCar->id : null;
+    
+        if ($carId === '') {
+            $user->cars()->update(['is_active' => false]); // Dezaktywuj wszystkie samochody dla użytkownika
+        } else {
+            $user->cars()->update(['is_active' => false]); // Dezaktywuj wszystkie samochody dla użytkownika
+            $activeCar = $user->cars()->find($carId);
+            if ($activeCar) {
+                $activeCar->is_active = true;
+                $activeCar->save();
+                $activeCarId = $activeCar->id; // Zaktualizuj ID aktywnego samochodu
+            }
         }
-    }
+    
+        return redirect()->back()->with('activeCarId', $activeCarId);
 
-    return redirect()->back();
-}
+
+    }
+    
+
+
+
 
     /**
      * Display a listing of the resource.
