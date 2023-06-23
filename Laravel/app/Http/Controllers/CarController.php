@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cars;
 use App\Models\User;
-
+use App\Notifications\CarAssignedNotification;
+use App\Notifications\CarUnassignedNotification;
+use Illuminate\Support\Facades\Notification;
 class CarController extends Controller
 {
     public function setActiveCar(Request $request, $userId)
@@ -24,11 +26,16 @@ class CarController extends Controller
                 $activeCar->is_active = true;
                 $activeCar->save();
                 $activeCarId = $activeCar->id; // Zaktualizuj ID aktywnego samochodu
+                $user->notify(new CarAssignedNotification($activeCar));
+                Notification::route('mail', 'admin@example.com')->notify(new CarAssignedNotification($activeCar));
+            }else{
+                $user->notify(new CarUnassignedNotification());
+                Notification::route('mail', 'admin@example.com')->notify(new CarUnassignedNotification());
             }
         }
-    
-        return redirect()->back()->with('activeCarId', $activeCarId);
+        
 
+        return redirect()->back()->with('activeCarId', $activeCarId);
 
     }
     
