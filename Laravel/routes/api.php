@@ -16,6 +16,9 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
+//Vue
+
+
 //Cars
 
 //create
@@ -39,6 +42,8 @@ Route::post('/customers/create', [CustomerController::class,'store']);
 Route::put('/customers/update', [CustomerController::class,'edit']);
 //delete
 Route::delete('/customers/delete', [CustomerController::class,'delete']);
+//delete with id
+Route::delete('/customers/destroy/{id}', [CustomerController::class,'destroy']);
 //get
 Route::get('/customers/{request}', [CustomerController::class,'read']);
 //get all

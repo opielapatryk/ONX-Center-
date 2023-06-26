@@ -12,10 +12,11 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = Customer::all();
-        return response()->json($customer);
+        $customer = Customer::all()->toArray();
+        return array_reverse($customer);
     }
 
+    
 
     /**
      * Store a newly created resource in storage.
@@ -59,9 +60,21 @@ class CustomerController extends Controller
         $customer = Customer::findorfail($request->id)->delete();
         return response()->json('Deleted successfully');
     }
+
+    
+    public function destroy($id)
+{
+    $customer = Customer::findOrFail($id);
+    $customer->delete();
+    return response()->json('Deleted successfully');
+}
+
+
     public function read($request)
     {
         $customer = Customer::where("id", $request)->get();
         return $customer;
     }
+
+
 }

@@ -15,6 +15,13 @@ use App\Http\Controllers\CarController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/{vue_capture?}', function() {
+    return view('app');
+})->where('vue_capture', '[\/\w\.-]*');
+
+Route::get('/', function () {
+    return view('app');
+});
 
 
 Route::get('task1/{customerId}', [CustomerController::class, 'index'])->name('home');
