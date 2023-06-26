@@ -13,7 +13,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customer = Customer::all()->toArray();
-        return array_reverse($customer);
+        return $customer;
     }
 
     
