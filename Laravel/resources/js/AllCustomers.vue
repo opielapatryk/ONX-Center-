@@ -23,7 +23,8 @@
                             <button class="btn btn-primary">Edit</button>
                         </router-link> -->
                         <button class="btn btn-danger" @click="deleteCustomer(customer.id)">Delete</button>
-                        <button class="btn btn-danger" @click="showCustomer(customer.id)">Details</button>
+                        
+                        <router-link to="/list-customer/5" class="nav-item nav-link"><button class="btn btn-info" @click="showCustomer(customer.id)">Details</button></router-link>
                     </div>
                 </td>
             </tr>
@@ -54,7 +55,24 @@
                         let i = this.customers.map(item => item.id).indexOf(id);
                         this.customers.splice(i, 1);
                     });
+            },
+            showCustomer(id) {
+            axios
+                .get(`http://localhost:8000/api/customers/${id}`)
+                .then(response => {
+                this.selectedCustomer = response.data;
+                this.$router.push({
+                    name: 'listCustomer',
+                    params: {
+                    id: id
+                    }
+                });
+                })
+                .catch(error => {
+                console.log(error);
+                });
             }
+
         }
 
     }
