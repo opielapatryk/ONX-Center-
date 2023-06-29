@@ -10,6 +10,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th>Options</th>
             </tr>
             </thead>
             <tbody>
@@ -25,9 +26,11 @@
                         </router-link> -->
                         <button class="btn btn-danger" @click="deleteCustomer(customer.id)">Delete</button>
                         
-                        <router-link to="/list-customer/:id" class="nav-item nav-link"><button class="btn btn-info" @click="showCustomer(customer.id)">Details</button></router-link>
+                        <router-link to="/customer/:id" class="nav-item nav-link">
+                            <button class="btn btn-info" @click="showCustomer(customer.id)">Details</button
+                        ></router-link>
                     </div>
-                    <router-view/>
+                    <!-- <router-view/> -->
                 </td>
             </tr>
             </tbody>
@@ -52,7 +55,7 @@
         methods: {
             deleteCustomer(id) {
                 axios
-                    .delete(`http://localhost:8000/api/customers/destroy/${id}`)
+                    .delete(`http://localhost:8000/api/customer/destroy/${id}`)
                     .then(response => {
                         let i = this.customers.map(item => item.id).indexOf(id);
                         this.customers.splice(i, 1);
@@ -60,11 +63,11 @@
             },
             showCustomer(id) {
             axios
-                .get(`http://localhost:8000/api/customers/${id}`)
+                .get(`http://localhost:8000/api/customer/${id}`)
                 .then(response => {
                 this.selectedCustomer = response.data;
                 this.$router.push({
-                    name: 'listCustomer',
+                    name: 'ListCustomer',
                     params: {
                     id: id
                     }

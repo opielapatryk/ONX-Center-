@@ -43,9 +43,9 @@ Route::put('/customers/update', [CustomerController::class,'edit']);
 //delete
 Route::delete('/customers/delete', [CustomerController::class,'delete']);
 //delete with id
-Route::delete('/customers/destroy/{id}', [CustomerController::class,'destroy']);
+Route::delete('/customer/destroy/{id}', [CustomerController::class,'destroy']);
 //get
-Route::get('/customers/{request}', [CustomerController::class,'read']);
+Route::get('/customer/{request}', [CustomerController::class,'read']);
 //get all
 Route::get('/customers', [CustomerController::class,'index']);
 

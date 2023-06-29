@@ -5,7 +5,7 @@
       <p>Email: {{ $route.params.email }}</p>
       <p>Phone: {{ $route.params.phone }}</p>
     </div>
-  </template>
+  </template>  
   
   <script>
   export default {
