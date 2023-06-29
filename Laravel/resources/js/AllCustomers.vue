@@ -1,5 +1,6 @@
+
 <template>
-    <div>
+    <div id="app">
         <h3 class="text-center">All Customers</h3><br/>
  
         <table class="table table-bordered">
@@ -24,8 +25,9 @@
                         </router-link> -->
                         <button class="btn btn-danger" @click="deleteCustomer(customer.id)">Delete</button>
                         
-                        <router-link to="/list-customer/5" class="nav-item nav-link"><button class="btn btn-info" @click="showCustomer(customer.id)">Details</button></router-link>
+                        <router-link to="/list-customer/:id" class="nav-item nav-link"><button class="btn btn-info" @click="showCustomer(customer.id)">Details</button></router-link>
                     </div>
+                    <router-view/>
                 </td>
             </tr>
             </tbody>
