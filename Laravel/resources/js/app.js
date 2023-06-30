@@ -1,7 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.css'; //poprawny import
+import 'bootstrap/dist/css/bootstrap.css';
 import './bootstrap';
 import { createApp } from 'vue'
-import AllCustomers from './AllCustomers.vue'
+import App from './App.vue';
 import router from "./routes"; 
 
-createApp(AllCustomers).use(router).mount('#app');
+createApp(App).use(router).mount('#app');

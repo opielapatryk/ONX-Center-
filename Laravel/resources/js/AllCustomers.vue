@@ -21,16 +21,9 @@
                 <td>{{ customer.phone }}</td>
                 <td>
                     <div class="btn-group" role="group">
-                        <!-- <router-link :to="{name: 'edit', params: { id: customer.id }}" >
-                            <button class="btn btn-primary">Edit</button>
-                        </router-link> -->
                         <button class="btn btn-danger" @click="deleteCustomer(customer.id)">Delete</button>
-                        
-                        <router-link to="/customer/:id" class="nav-item nav-link">
-                            <button class="btn btn-info" @click="showCustomer(customer.id)">Details</button
-                        ></router-link>
+                        <button class="btn btn-info" @click="showCustomer(customer.id)">Details</button>
                     </div>
-                    <!-- <router-view/> -->
                 </td>
             </tr>
             </tbody>
@@ -66,6 +59,9 @@
                 .get(`http://localhost:8000/api/customer/${id}`)
                 .then(response => {
                 this.selectedCustomer = response.data;
+                
+                console.log(response.data);
+                console.log(response.data[0].name);
                 this.$router.push({
                     name: 'ListCustomer',
                     params: {

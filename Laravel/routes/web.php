@@ -5,16 +5,6 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 Route::get('/{vue_capture?}', function() {
     return view('app');
 })->where('vue_capture', '[\/\w\.-]*');
@@ -22,7 +12,6 @@ Route::get('/{vue_capture?}', function() {
 Route::get('/', function () {
     return view('app');
 });
-
 
 Route::get('task1/{customerId}', [CustomerController::class, 'index'])->name('home');
 
