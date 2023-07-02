@@ -1,8 +1,11 @@
 
 <template>
     <div id="app">
-        <h3 class="text-center">All Customers</h3><br/>
- 
+        <div class="d-flex flex-column">
+            <!-- <button class="btn btn-primary" @click="createCustomer()">Add new customer</button><br/> -->
+            <h3 class="text-center">All Customers</h3><br/>
+        </div>
+        
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -32,6 +35,8 @@
 </template>
  
 <script>
+import axios from 'axios';
+
     export default {
         data() {
             return {
@@ -46,6 +51,13 @@
                 });
         },
         methods: {
+            // createCustomer(){
+            //     axios
+            //         .post('http://localhost:8000/api/customers/create')
+            //         .then(response => {
+            //             console.log(response.data);
+            //         });
+            // },
             deleteCustomer(id) {
                 axios
                     .delete(`http://localhost:8000/api/customer/destroy/${id}`)
@@ -59,13 +71,10 @@
                 .get(`http://localhost:8000/api/customer/${id}`)
                 .then(response => {
                 this.selectedCustomer = response.data;
-                
-                console.log(response.data);
-                console.log(response.data[0].name);
                 this.$router.push({
                     name: 'ListCustomer',
                     params: {
-                    id: id
+                    id: id,
                     }
                 });
                 })

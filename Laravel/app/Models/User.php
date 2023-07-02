@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable; // Dodaj import Notifiable
+use Illuminate\Notifications\Notifiable; 
 
 class User extends Model
 {
-    use HasFactory, Notifiable; // Dodaj Notifiable do używanych atrybutów
-
+    use HasFactory, Notifiable; 
     public function cars()
     {
         return $this->hasMany(Cars::class);

@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CustomercarController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -65,3 +66,13 @@ Route::get('/employees/{request}', [EmployeeController::class,'read']);
 Route::get('/employees', [EmployeeController::class,'index']);
 
 //Employees
+
+//Orders
+Route::get('/orders', [OrderController::class,'index']);
+
+//Orders
+
+//CustomerCars
+Route::get('/customercar', [CustomercarController::class,'index']);
+
+//CustomerCars
