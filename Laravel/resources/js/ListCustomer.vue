@@ -233,6 +233,7 @@ export default {
               };
               break;
           }
+          
           axios.put('http://127.0.0.1:8000/api/orders/update', updatedData).then(response => {console.log(response)}).catch(error => {console.log(error)});
         },
         onCellBlurCustomerCar(field,newCellData) {
