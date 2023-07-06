@@ -27,9 +27,9 @@ class CustomerController extends Controller
 
 
         $request->validate([
-            'name' => ['required'],
-            'email' => ['required'],
-            'phone' => ['required'],
+            'name' => ['required','max:200', 'string'],
+            'email' => ['bail','required', 'unique:customers', 'email','max:200','string'],
+            'phone' => ['bail','required', 'unique:customers', 'numeric'],
         ]);
 
         $customer = new Customer;

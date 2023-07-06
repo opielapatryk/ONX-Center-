@@ -21,7 +21,7 @@ class CustomercarController extends Controller
         $request->validate([
             'brand' => ['required'],
             'model' => ['required'],
-            'number_plate' => ['required'],
+            'number_plate' => ['bail','required', 'unique:customercars', 'max:5'],
             'customer_id' => ['required'],
         ]);
 
