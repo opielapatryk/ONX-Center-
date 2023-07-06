@@ -2,7 +2,10 @@
 <template>
     <div id="app">
         <div class="d-flex flex-column">
-            <!-- <button class="btn btn-primary" @click="createCustomer()">Add new customer</button><br/> -->
+            <router-link class="btn btn-primary" to="/create">
+                Add new customer
+            </router-link><br>
+            
             <h3 class="text-center">All Customers</h3><br/>
         </div>
         
@@ -25,7 +28,7 @@
                 <td>
                     <div class="btn-group" role="group">
                         <button class="btn btn-danger" @click="deleteCustomer(customer.id)">Delete</button>
-                        <button class="btn btn-info" @click="showCustomer(customer.id)">Details</button>
+                        <button class="btn btn-primary" @click="showCustomer(customer.id)">Details and edit</button>
                     </div>
                 </td>
             </tr>
@@ -51,13 +54,6 @@ import axios from 'axios';
                 });
         },
         methods: {
-            // createCustomer(){
-            //     axios
-            //         .post('http://localhost:8000/api/customers/create')
-            //         .then(response => {
-            //             console.log(response.data);
-            //         });
-            // },
             deleteCustomer(id) {
                 axios
                     .delete(`http://localhost:8000/api/customer/destroy/${id}`)

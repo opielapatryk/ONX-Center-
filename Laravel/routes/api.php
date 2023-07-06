@@ -69,10 +69,15 @@ Route::get('/employees', [EmployeeController::class,'index']);
 
 //Orders
 Route::get('/orders', [OrderController::class,'index']);
+Route::post('/orders/create', [OrderController::class,'store']);
+Route::put('/orders/update', [OrderController::class,'edit']);
 
 //Orders
 
 //CustomerCars
 Route::get('/customercar', [CustomercarController::class,'index']);
+Route::post('/customercar/create', [CustomercarController::class,'store']);
+Route::put('/customercar/update', [CustomercarController::class,'edit']);
+
 
 //CustomerCars
