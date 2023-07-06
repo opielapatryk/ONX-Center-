@@ -101,6 +101,14 @@
             {{ dataCustomerCar.model }}
           </td>
         </tr>
+        <tr v-for="dataCustomerCar in customercar">
+          <td v-if="dataCustomerCar.customer_id === customer.id">
+            Customer car nubmer plate: 
+          </td>
+          <td v-if="dataCustomerCar.customer_id === customer.id" contenteditable @blur="onCellBlurCustomerCar('number_plate',$event.target.textContent)">
+            {{ dataCustomerCar.number_plate }}
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -256,6 +264,15 @@ export default {
                 brand: customerCar[0].brand,
                 model:newCellData,
                 number_plate:11111,
+                customer_id: customerCar[0].customer_id
+              };
+              break;
+              case 'number_plate':
+              updatedData = {
+                id: customerCar[0].id,
+                brand: customerCar[0].brand,
+                model:customerCar[0].model,
+                number_plate:newCellData,
                 customer_id: customerCar[0].customer_id
               };
               break;
