@@ -23,6 +23,9 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        $firstAvailableId = Customer::getFirstAvailableId();
+
+
         $request->validate([
             'name' => ['required'],
             'email' => ['required'],
@@ -30,6 +33,7 @@ class CustomerController extends Controller
         ]);
 
         $customer = new Customer;
+        $customer->id = $firstAvailableId;
         $customer->name = $request->name;
         $customer->email = $request->email;
         $customer->phone = $request->phone;
