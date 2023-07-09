@@ -35,7 +35,7 @@
                 </ul>
               </div>
 
-                <button @click="addCustomer" class="btn btn-primary">Add</button>
+            <button @click="addCustomer" class="btn btn-primary">Add</button>
         </div>
       </div>
   </template>
@@ -58,17 +58,11 @@
     },
     methods: {
       async addCustomer() {
-        this.errors = [];
-        if (!this.name) {
-        this.errors.push("Name is required.");
-      }
-      // Dodaj inne reguły walidacji dla innych pól formularza
 
-      // Sprawdź, czy wystąpiły błędy walidacji
-      if (this.errors.length) {
-        return; // Przerwij funkcję w przypadku błędów walidacji
-      }
+        this.errors = [];
         try {
+            
+            this.errors = [];
             const response = await axios.post(
             "http://localhost:8000/api/customers/create", 
             {
@@ -109,11 +103,17 @@
                 value: null,
                 customer_id: customerId
             });
+
             this.$router.push("/");
 
-        } catch(e) {
-            console.log(e.response.data);
-        }
+        } catch (e) {
+            const errorData = e.response.data;
+
+            for (const field in errorData.errors) {
+                this.errors.push(errorData.errors[field][0]);
+            }
+
+            }
         },
     },
   };
